@@ -30,4 +30,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: deploy the code
-      run: sleep 60
+      run: sleep 600
