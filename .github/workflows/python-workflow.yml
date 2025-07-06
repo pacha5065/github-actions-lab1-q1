@@ -23,6 +23,7 @@ jobs:
 
   deploy:
     # timeout-minutes: 1
+    needs: build
     concurrency: 
       cancel-in-progress: true
       group: deploy-group
