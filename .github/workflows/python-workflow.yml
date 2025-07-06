@@ -22,7 +22,7 @@ jobs:
         pip install -r requirements.txt
 
   deploy:
-    # timeout-minutes: 1
+    timeout-minutes: 1
     needs: build
     concurrency: 
       cancel-in-progress: true
