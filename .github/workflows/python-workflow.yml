@@ -7,6 +7,10 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        images: [hello-world, alpine, python]
     runs-on: ubuntu-latest
     steps:
     - name: checkout code
@@ -21,6 +25,11 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    - name: matrix values ${{ matrix.os }} & ${{ matrix.images}}
+      run: |
+        echo "print values of os ${{ matrix.os }}"
+        echo "printing value of image ${{matrix.images}}"
+
   deploy:
     timeout-minutes: 1
     needs: build
@@ -30,4 +39,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: deploy the code
-      run: sleep 600
+      run: sleep 30
