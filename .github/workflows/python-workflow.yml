@@ -8,9 +8,16 @@ on:
 jobs:
   build:
     strategy:
+      max-parallel: 2
       matrix:
         os: [ubuntu-latest, windows-latest]
         images: [hello-world, alpine, python]
+        exclude:
+          - images: alpine
+            os: windows-latest
+        include:
+          - os: ubuntu-20.04
+            images: python
     runs-on: ubuntu-latest
     steps:
     - name: checkout code
