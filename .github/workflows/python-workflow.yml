@@ -1,15 +1,13 @@
 name: CI
 
 on:
- # push:  
-  workflow_dispatch:
-  schedule:
-    - cron: "*/1 * * * *"
+  [ push, workflow_dispatch]
+  # schedule:
+  #   - cron: "*/1 * * * *"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: checkout code
       uses: actions/checkout@v4
@@ -22,3 +20,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+
+  deploy:
+    # timeout-minutes: 1
+    concurrency: 
+      cancel-in-progress: true
+      group: deploy-group
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy the code
+      run: sleep 60
