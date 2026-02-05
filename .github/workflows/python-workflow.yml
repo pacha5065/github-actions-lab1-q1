@@ -14,9 +14,10 @@ jobs:
         python-version: 3.11
 
     - name: checkout code
-      uses: actions/Checkout@v4
+      uses: actions/checkout@v4
       
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+
 
